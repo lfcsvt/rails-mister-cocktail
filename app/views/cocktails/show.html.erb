@@ -1,18 +1,22 @@
 <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('http://lorempixel.com/400/200');">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-4">
+        <ul>
+          <h1><%= @cocktail.name %></h1>
 
-  <ul>
-    <h1><%= @cocktail.name %></h1>
-
-     <% @cocktail.doses.each do  |dose| %>
-    <li><%= dose.description %></li>
-    <li><%= dose.ingredient %></li>
-    <% end  %>
-    </ul>
+           <% @cocktail.doses.each do  |dose| %>
+          <li><%= dose.description %> <%= dose.ingredient.name %>
+          <%= link_to "Delete", dose_destroy_path(dose), method: :delete %>
+          </li>
+          <% end  %>
+        </ul>
+      </div>
+    </div>
+  </div>
 </div>
 
 <%= link_to "Cocktails", cocktails_path %>
 
 <%= link_to "Add Dose", new_cocktail_dose_path(@cocktail) %>
-
-
-
+<%= link_to "Delete Cocktail", cocktail_path, method: :delete %>
